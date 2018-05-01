@@ -28,7 +28,7 @@ Now, in your `Jenkinsfile` specify the following:
 ```
 pipeline {
   agent {
-    node { label 'nodejs8' }}
+    node { label 'nodejs8' }
   }
   ...
 }

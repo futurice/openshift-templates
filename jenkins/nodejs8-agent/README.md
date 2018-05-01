@@ -3,7 +3,7 @@
 This is an [OpenShift][openshift] template intended to-be-used as a
 [Jenkins][jenkins] build agent. It includes:
 
-- [NodeJS[nodejs] 8 LTS
+- [NodeJS][nodejs] 8 LTS
 - [yarn][yarn]
 - [npm][npm]
 

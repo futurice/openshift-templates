@@ -1,0 +1,28 @@
+#!/bin/bash -e
+#
+# S2I assemble script for the 's2i-clojure' image.
+# The 'assemble' script builds your application source so that it is ready to run.
+#
+# For more information refer to the documentation:
+#	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
+#
+
+# If the 's2i-clojure' assemble script is executed with the '-h' flag, print the usage.
+if [[ "$1" == "-h" ]]; then
+	exec /usr/libexec/s2i/usage
+fi
+
+# Restore artifacts from the previous build (if they exist).
+if [ -e "/tmp/artifacts/.m2" ]; then
+  echo "---> Restoring build artifacts..."
+  mv /tmp/artifacts/.m2 .
+fi
+
+echo "---> Building application from source..."
+pushd /tmp/src > /dev/null
+lein uberjar
+mv target/*standalone.jar /opt/app-root/app.jar
+popd > /dev/null
+
+echo "---> Cleaning up..."
+rm -rf /tmp/src

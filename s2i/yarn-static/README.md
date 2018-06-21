@@ -6,10 +6,11 @@ serve them using [nginx][nginx].
 [yarn]: https://www.nginx.com/
 [nginx]: https://yarnpkg.com/en/
 
-## Source Input
+## Expected Source
 
-This image expects the `package.json` to define an alias `build` that creates a
-static output in the subdirectory `./build`.
+- `package.json`: Needs to define a `build` alias that creates static output in
+  `./build`.
+- `yarn.lock`
 
 ## Builder Image
 
@@ -31,14 +32,6 @@ make test
 
 ```
 s2i build test/test-app s2i-yarn-static s2i-yarn-static-app
----> Building and installing application from source...
-```
-
-### Build the Image incrementally
-
-```
-s2i build --incremental=true test/test-app s2i-yarn-static s2i-yarn-static-app
----> Restoring build artifacts...
 ---> Building and installing application from source...
 ```
 

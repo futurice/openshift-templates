@@ -1,8 +1,10 @@
 ## OpenShift Templates
 
-This is a collection of [OpenShift][openshift] templates that we found useful.
+This is a collection of [OpenShift][openshift] templates and
+[Source-to-Image][s2i] builders that we found useful.
 
-[openshift]: openshift.com
+[openshift]: https://openshift.com
+[s2i]: https://github.com/openshift/source-to-image
 
 ### License
 

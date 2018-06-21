@@ -1,0 +1,21 @@
+#!/bin/bash -e
+#
+# S2I assemble script for the 's2i-yarn-static' image.
+# The 'assemble' script builds your application source so that it is ready to run.
+#
+# For more information refer to the documentation:
+#	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
+#
+
+# If the 's2i-yarn-static' assemble script is executed with the '-h' flag, print the usage.
+if [[ "$1" == "-h" ]]; then
+	exec /usr/libexec/s2i/usage
+fi
+
+echo "---> Building application from source..."
+pushd /tmp/src > /dev/null
+yarn
+yarn build
+mv build/* /opt/app-root
+popd > /dev/null
+rm -rf /tmp/src

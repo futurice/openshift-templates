@@ -1,0 +1,13 @@
+{
+    "name": "test-app",
+    "version": "1.0.0",
+    "description": "",
+    "license": "MIT",
+    "dependencies": {
+        "serve": "^9.1.0"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "server": "yarn serve -l 8080"
+    }
+}

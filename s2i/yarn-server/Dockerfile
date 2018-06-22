@@ -9,7 +9,7 @@ ENV BUILDER_VERSION=1.0.0 \
     NODE_VERSION=8.11.3 \
     YARN_VERSION=1.6.0 \
     YARN_RUN="yarn server" \
-    NODE_ENV=production
+    RUN_NODE_ENV=production
 
 LABEL io.k8s.description="Platform for building yarn applications that provide a server" \
       io.k8s.display-name="Yarn Server Builder 1.0.0" \

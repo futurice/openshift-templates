@@ -14,8 +14,14 @@ fi
 
 echo "---> Building application from source..."
 pushd /tmp/src > /dev/null
+
 yarn
 yarn build
 mv build/* /opt/app-root
+
+if [ -e "config.json.tpl" ]; then
+	cp config.json.tpl /opt/app-root
+fi
+
 popd > /dev/null
 rm -rf /tmp/src

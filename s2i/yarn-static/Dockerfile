@@ -21,7 +21,8 @@ LABEL io.k8s.description="Platform for building static webpages based on yarn" \
 RUN curl -sL https://dl.yarnpkg.com/rpm/yarn.repo > /etc/yum.repos.d/yarn.repo && \
         curl -sL https://rpm.nodesource.com/setup_8.x | bash - && \
         yum install -y epel-release
-RUN yum install -y nginx-${NGINX_VERSION} nodejs-${NODE_VERSION} yarn-${YARN_VERSION} && \
+RUN yum install -y nginx-${NGINX_VERSION} nodejs-${NODE_VERSION} yarn-${YARN_VERSION} python-pip && \
+        pip install envtpl && \
         yum clean all && \
         chown -R 1001:1001 /var/log/nginx && \
         chmod g+rw /var/run && \

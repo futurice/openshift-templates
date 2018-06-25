@@ -6,5 +6,10 @@
 # For more information see the documentation:
 #	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
 #
+CONFIGURATION_TEMPLATE="/opt/app-root/config.json.tpl"
+
+if [ -e  "$CONFIGURATION_TEMPLATE" ]; then
+    envtpl "$CONFIGURATION_TEMPLATE"
+fi
 
 exec nginx

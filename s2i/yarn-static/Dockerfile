@@ -24,7 +24,8 @@ RUN curl -sL https://dl.yarnpkg.com/rpm/yarn.repo > /etc/yum.repos.d/yarn.repo &
 RUN yum install -y nginx-${NGINX_VERSION} nodejs-${NODE_VERSION} yarn-${YARN_VERSION} python-pip && \
         pip install envtpl && \
         yum clean all && \
-        chown -R 1001:1001 /var/log/nginx && \
+        mkdir -p /opt/cache && \
+        chown -R 1001:1001 /var/log/nginx /opt/cache && \
         chmod g+rw /var/run && \
         yarn --version && \
         node --version

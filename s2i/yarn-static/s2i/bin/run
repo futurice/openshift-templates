@@ -9,6 +9,7 @@
 CONFIGURATION_TEMPLATE="/opt/app-root/config.json.tpl"
 
 if [ -e  "$CONFIGURATION_TEMPLATE" ]; then
+    echo "---> Creating configuration from template..."
     envtpl "$CONFIGURATION_TEMPLATE"
 fi
 

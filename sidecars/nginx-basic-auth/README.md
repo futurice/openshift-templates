@@ -31,7 +31,7 @@ configuration:
       protocol: TCP
   env:
     - name: FORWARD_PORT
-      value: ${{CONTAINER_PORT}}
+      value: ${CONTAINER_PORT}
 ```
 
 ### Environment

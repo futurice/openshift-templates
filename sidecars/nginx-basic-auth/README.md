@@ -38,4 +38,4 @@ configuration:
 
 - `PORT`: the proxy port (default: `8087`)
 - `FORWARD_PORT`: the application port (default: `8080`)
-- `HTPASSWD`: inline `.htpasswd` file for authentication
+- `HTPASSWD`: inline `.htpasswd` file for authentication (default credentials: `admin`/`admin`)

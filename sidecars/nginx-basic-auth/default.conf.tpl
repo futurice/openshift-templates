@@ -4,8 +4,10 @@ server {
     location / {
 
         # Basic Auth
-        auth_basic "Restricted";
-        auth_basic_user_file "auth.htpasswd";
+        limit_except OPTIONS {
+            auth_basic "Restricted";
+            auth_basic_user_file "auth.htpasswd";
+        }
 
         {% if CORS_ORIGIN is defined %}
         # CORS Preflight Request

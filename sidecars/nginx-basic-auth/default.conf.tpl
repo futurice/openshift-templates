@@ -7,9 +7,10 @@ server {
         auth_basic "Restricted";
         auth_basic_user_file "auth.htpasswd";
 
+        {% if CORS_ORIGIN is defined %}
         # CORS Preflight Request
         if ($request_method = 'OPTIONS') {
-            add_header 'Access-Control-Allow-Origin' '{{ CORS_ORIGIN | default("*") }}';
+            add_header 'Access-Control-Allow-Origin' '{{ CORS_ORIGIN }}';
             add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
             add_header 'Access-Control-Allow-Headers' 'Content-Type,Authorization';
             add_header 'Access-Control-Max-Age' 1728000;
@@ -20,11 +21,12 @@ server {
 
         # CORS Headers
         if ($request_method ~ 'GET|POST') {
-            add_header 'Access-Control-Allow-Origin' '{{ CORS_ORIGIN | default("*") }}' always;
+            add_header 'Access-Control-Allow-Origin' '{{ CORS_ORIGIN }}' always;
             add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS' always;
             add_header 'Access-Control-Allow-Headers' 'Content-Type,Authorization' always;
             add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range' always;
         }
+        {% endif %}
 
         # Proxy
         proxy_set_header Host $host;

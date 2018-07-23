@@ -29,8 +29,9 @@ RUN yum install -y nginx-${NGINX_VERSION} nodejs-${NODE_VERSION} yarn-${YARN_VER
         chmod g+rw /var/run /opt/app-root && \
         yarn --version && \
         node --version
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY default.conf.tpl /etc/nginx/conf.d/default.conf.tpl
 COPY nginx.conf /etc/nginx/nginx.conf
+RUN chmod -R a+w /etc/nginx/conf.d
 
 # --------------------
 # BUILD LOGIC

@@ -9,8 +9,15 @@
 CONFIGURATION_TEMPLATE="/opt/app-root/config.json.tpl"
 
 if [ -e  "$CONFIGURATION_TEMPLATE" ]; then
-    echo "---> Creating configuration from template..."
+    echo "---> Creating JSON configuration from template..."
     envtpl "$CONFIGURATION_TEMPLATE"
+    cat "/opt/app-root/config.json"
+    echo
 fi
+
+echo "---> Creating nginx configuration ..."
+envtpl "/etc/nginx/conf.d/default.conf.tpl"
+cat "/etc/nginx/conf.d/default.conf"
+echo
 
 exec nginx

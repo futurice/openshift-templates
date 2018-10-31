@@ -3,7 +3,7 @@
 This is an S2I builder image to build and run backend services using
 [yarn][yarn].
 
-[yarn]: https://www.nginx.com/
+[yarn]: https://www.yarnpkg.com/
 
 ## Expected Source
 

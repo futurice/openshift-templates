@@ -25,13 +25,10 @@ RUN yum install -y nginx-${NGINX_VERSION} nodejs-${NODE_VERSION} yarn-${YARN_VER
         pip install envtpl && \
         yum clean all && \
         mkdir -p /opt/cache && \
-        chown -R 1001:1001 /var/log/nginx /opt/cache && \
-        chmod g+rw /var/run /opt/app-root && \
         yarn --version && \
         node --version
 COPY default.conf.tpl /etc/nginx/conf.d/default.conf.tpl
 COPY nginx.conf /etc/nginx/nginx.conf
-RUN chmod -R a+w /etc/nginx/conf.d
 
 # --------------------
 # BUILD LOGIC

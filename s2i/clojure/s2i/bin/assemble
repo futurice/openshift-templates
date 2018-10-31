@@ -24,5 +24,7 @@ lein uberjar
 mv target/*standalone.jar /opt/app-root/app.jar
 popd > /dev/null
 
+fix-permissions /opt/app-root
+
 echo "---> Cleaning up..."
 rm -rf /tmp/src

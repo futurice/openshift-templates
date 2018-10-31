@@ -25,10 +25,6 @@ RUN yum install -y nodejs-${NODE_VERSION} yarn-${YARN_VERSION} && \
         yum clean all && \
         yarn --version && \
         node --version
-RUN mkdir -p /opt/app-root/src/.config/yarn/link && \
-        mkdir -p /opt/app-root/src/.cache/yarn && \
-        mkdir -p /opt/app-root/src/.yarn && \
-        chmod -R a+w /opt/app-root/src
 
 # --------------------
 # BUILD LOGIC

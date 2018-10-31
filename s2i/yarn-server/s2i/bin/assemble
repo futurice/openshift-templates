@@ -17,3 +17,5 @@ mv /tmp/src/* .
 
 echo "---> Building application from source..."
 yarn
+
+fix-permissions ./

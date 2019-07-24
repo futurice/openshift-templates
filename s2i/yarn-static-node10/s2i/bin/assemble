@@ -1,0 +1,46 @@
+#!/bin/bash -e
+#
+# S2I assemble script for the 's2i-yarn-static' image.
+# The 'assemble' script builds your application source so that it is ready to run.
+#
+# For more information refer to the documentation:
+#	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
+#
+
+# If the 's2i-yarn-static' assemble script is executed with the '-h' flag, print the usage.
+if [[ "$1" == "-h" ]]; then
+	exec /usr/libexec/s2i/usage
+fi
+
+
+# Restore artifacts from the previous build (if they exist).
+
+pushd /tmp/src > /dev/null
+
+if [ -e "/tmp/artifacts/node_modules" ]; then
+  echo "---> Restoring build artifacts..."
+  mv -f /tmp/artifacts/node_modules .
+fi
+
+echo "---> Installing application dependencies..."
+yarn
+find node_modules -type f -exec touch {} +
+
+echo "---> Building application from source..."
+yarn build
+mv build/* /opt/app-root
+
+if [ -e "config.json.tpl" ]; then
+	cp config.json.tpl /opt/app-root
+fi
+
+fix-permissions /opt/app-root
+fix-permissions /var/run
+fix-permissions /var/log/nginx
+fix-permissions /opt/cache
+fix-permissions /etc/nginx
+
+echo "---> Caching build artifacts..."
+mv node_modules /opt/cache
+
+popd > /dev/null

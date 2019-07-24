@@ -1,0 +1,12 @@
+{
+    "name": "test-app",
+    "version": "1.0.0",
+    "description": "",
+    "dependencies": {
+        "concurrently": "^3.5.1"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "build": "mkdir -p build && cp index.html build"
+    }
+}

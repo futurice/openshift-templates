@@ -30,6 +30,13 @@ RUN yum install -y nginx-${NGINX_VERSION} nodejs-${NODE_VERSION} yarn-${YARN_VER
 COPY default.conf.tpl /etc/nginx/conf.d/default.conf.tpl
 COPY nginx.conf /etc/nginx/nginx.conf
 
+RUN fix-permissions /opt/app-root && \
+        fix-permissions /var/run && \
+        fix-permissions /opt && \
+        fix-permissions /var/log/nginx && \
+        fix-permissions /opt/cache && \
+        fix-permissions /etc/nginx
+
 # --------------------
 # BUILD LOGIC
 # --------------------

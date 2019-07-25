@@ -34,12 +34,6 @@ if [ -e "config.json.tpl" ]; then
 	cp config.json.tpl /opt/app-root
 fi
 
-fix-permissions /opt/app-root
-fix-permissions /var/run
-fix-permissions /var/log/nginx
-fix-permissions /opt/cache
-fix-permissions /etc/nginx
-
 echo "---> Caching build artifacts..."
 mv node_modules /opt/cache
 

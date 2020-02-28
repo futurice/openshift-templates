@@ -13,7 +13,8 @@ objects:
   kind: ImageStream
   metadata:
     annotations:
-      slave-directory: /home/jenkins
+      # slave-directory: /home/jenkins
+      slave-directory: /home/jenkins/agent
       slave-label: nodejs10
     labels:
       template: jenkins-nodejs10-agent-template

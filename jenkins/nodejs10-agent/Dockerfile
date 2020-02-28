@@ -1,4 +1,4 @@
-FROM openshift/jenkins-slave-base-centos7
+FROM quay.io/openshift/origin-jenkins-agent-base
 MAINTAINER Yannick Scherer <yannick.scherer@futurice.com>
 
 RUN curl -sL https://rpm.nodesource.com/setup_10.x | bash - && \

@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Template
+labels:
+  template: jenkins-nodejs10-agent-template
+metadata:
+  annotations:
+    description: Create a NodeJS-capable Jenkins agent
+    iconClass: icon-jenkins
+    tags: jenkins
+  name: jenkins-nodejs10-agent-template
+objects:
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      slave-directory: /home/jenkins
+      slave-label: nodejs10
+    labels:
+      template: jenkins-nodejs10-agent-template
+      role: jenkins-slave
+    name: jenkins-nodejs10-agent
+  spec: {}
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    annotations:
+      description: Builds a NodeJS-capable Jenkins agent
+    labels:
+      template: jenkins-nodejs10-agent-template
+    name: jenkins-nodejs10-agent
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: jenkins-nodejs10-agent:latest
+    resources: {}
+    source:
+      type: Git
+      contextDir: jenkins/nodejs10-agent
+      git:
+        uri: https://github.com/futurice/openshift-templates
+    strategy:
+      type: Docker
+      dockerStrategy:
+        dockerfilePath: Dockerfile
+  triggers:
+    - type: ConfigChange

@@ -1,12 +1,16 @@
-FROM quay.io/openshift/origin-jenkins-agent-base
+FROM jenkins/jnlp-slave:3.40-1
 MAINTAINER Yannick Scherer <yannick.scherer@futurice.com>
 
-RUN curl -sL https://rpm.nodesource.com/setup_10.x | bash - && \
-    curl -sL https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo && \
-    yum check-update && \
-    yum install -y nodejs yarn && \
-    yum clean all -y && \
-    chown -R 1001:0 $HOME && \
-    chmod -R g+rw $HOME
+USER root
 
-USER 1001
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    apt-get -y update && \
+    apt-get -y install \
+        yarn \
+        nodejs && \
+    chown -R 1000:0 $HOME && \
+    chmod -R g+rw $HOME && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

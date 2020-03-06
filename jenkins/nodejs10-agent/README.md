@@ -1,6 +1,6 @@
 ## jenkins-nodejs10-agent
 
-This is an [OpenShift][openshift] template intended to-be-used as a
+This is an [OpenShift][openshift] image intended to-be-used as a
 build agent for a [Jenkins][jenkins] instance provided by OpenShift (i.e.
 created using the `jenkins-persistent` template). It includes:
 
@@ -15,13 +15,15 @@ created using the `jenkins-persistent` template). It includes:
 [npm]: https://www.npmjs.com/
 
 ### Usage
-
-Build the agent image in a project your Jenkins app has access to:
-
+The Dockerfile is amended to be build locally.
 ```
-$ oc new-app https://raw.githubusercontent.com/futurice/openshift-templates/master/jenkins/nodejs10-agent/template.yml
-$ oc start-build jenkins-nodejs10-agent
+docker build -t registry.pro-eu-west-1.openshift.com/ci/jenkins-nodejs10-agent .
 ```
+Thereafter the image can be pushed with:
+```
+docker push registry.pro-eu-west-1.openshift.com/ci/jenkins-nodejs10-agent
+```
+> Mind that the pullStrategy needs to be set to "Always" to pick up the new version.
 
 Now, in your `Jenkinsfile` specify the following:
 
